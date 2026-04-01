@@ -1,79 +1,71 @@
-# 3D Portfolio Website
+# Amrinder Rattanpal Portfolio
 
-This repository contains the source code for a personal 3D portfolio built with React, TypeScript, Three.js, React Three Fiber, and GSAP. It includes animated page sections, a character scene, custom cursor interactions, and smooth transitions designed for a modern portfolio experience.
+Personal portfolio site for Amrinder Rattanpal, focused on platform engineering, Azure, Kubernetes, DevOps leadership, and cloud-native delivery. The app is built as a fast single-page React site with animated sections, scroll-triggered reveals, a custom cursor, and a horizontally moving tech stack showcase.
 
 [Live site](https://portfolio.ammu-rattan.workers.dev/)
 
 ![Portfolio Preview](public/images/preview1.png)
 
-## Table of Contents
+## Overview
 
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Project Structure](#project-structure)
-- [Getting Started](#getting-started)
-- [Available Scripts](#available-scripts)
-- [GSAP License Note](#gsap-license-note)
-- [Customization Guide](#customization-guide)
-- [Troubleshooting](#troubleshooting)
-- [Deployment](#deployment)
-- [License](#license)
+This project presents a professional profile through a one-page experience with dedicated sections for:
 
-## Features
+- Hero introduction and contact CTA
+- About summary and certification highlights
+- Core areas of expertise
+- Career timeline
+- Selected project and platform work
+- Animated tech stack marquee
+- Footer with education, certifications, and social links
 
-- Responsive one-page portfolio layout with reusable section components.
-- 3D character scene rendering powered by React Three Fiber and Three.js.
-- GSAP-powered animations and transitions for interactive storytelling.
-- Custom cursor, hover interactions, and scroll-driven visual effects.
-- Organized component architecture with dedicated utilities and style modules.
+The codebase also contains an experimental 3D character module under `src/components/Character`, but it is not currently mounted in the main application flow.
 
-## Tech Stack
-
-### Core
+## Stack
 
 - React 18
 - TypeScript
 - Vite
+- GSAP and ScrollTrigger for motion and scroll-based reveals
+- React Icons for UI iconography
+- Three.js and React Three Fiber tooling for the optional 3D module
 
-### Animation and 3D
+## Features
 
-- GSAP + `@gsap/react`
-- Three.js
-- `@react-three/fiber`
-- `@react-three/drei`
-- `@react-three/postprocessing`
-- `@react-three/cannon`
-- `@react-three/rapier`
-
-### Supporting Libraries
-
-- `react-icons`
-- `react-fast-marquee`
-- `@vercel/analytics`
+- Responsive single-page portfolio layout
+- Content sections tailored to DevOps and cloud-platform work
+- Scroll-triggered card and timeline animations
+- Custom cursor interactions
+- Lazy-loaded sections for lighter initial rendering
+- Fast local development and production bundling with Vite
 
 ## Project Structure
 
 ```text
 .
-├── public/                    # Static assets
+├── public/
+│   ├── images/                # Preview and static image assets
+│   ├── models/                # Encrypted/related 3D assets
+│   └── draco/                 # Draco decoder files
 ├── src/
-│   ├── assets/                # Local media/assets
 │   ├── components/
-│   │   ├── Character/         # 3D scene + character logic/utilities
-│   │   ├── styles/            # Section/component CSS files
+│   │   ├── Character/         # Optional 3D scene code and utilities
+│   │   ├── styles/            # Component-level CSS files
 │   │   ├── About.tsx
 │   │   ├── Career.tsx
 │   │   ├── Contact.tsx
+│   │   ├── Cursor.tsx
 │   │   ├── Landing.tsx
 │   │   ├── MainContainer.tsx  # Main page composition
 │   │   ├── Navbar.tsx
 │   │   ├── TechStack.tsx
 │   │   ├── WhatIDo.tsx
 │   │   └── Work.tsx
-│   ├── context/               # Global providers (loading state, etc.)
-│   ├── data/                  # Static data/content definitions
+│   ├── context/               # Loading state provider
+│   ├── data/                  # Static data/config where needed
 │   ├── App.tsx
+│   ├── index.css
 │   └── main.tsx
+├── index.html
 ├── package.json
 └── vite.config.ts
 ```
@@ -82,95 +74,83 @@ This repository contains the source code for a personal 3D portfolio built with 
 
 ### Prerequisites
 
-- Node.js 18+ (recommended)
-- npm 9+ (or compatible)
+- Node.js 18 or newer
+- npm 9 or newer
 
-### Installation
+### Install
 
-1. Clone the repository:
+```bash
+npm install
+```
 
-   ```bash
-   git clone <your-repository-url>
-   cd 3d-portfolio
-   ```
+### Run Locally
 
-2. Install dependencies:
+```bash
+npm run dev
+```
 
-   ```bash
-   npm install
-   ```
+The Vite dev server is started with `--host`, which makes the site accessible from your local network as well as `localhost`.
 
-3. Start the local development server:
+## Scripts
 
-   ```bash
-   npm run dev
-   ```
+```bash
+npm run dev
+```
 
-4. Open the URL shown in the terminal (typically `http://localhost:5173`).
+Starts the local development server.
 
-## Available Scripts
+```bash
+npm run build
+```
 
-- `npm run dev`  
-  Starts Vite dev server and exposes host for local network testing.
+Runs TypeScript project builds and creates the production bundle in `dist/`.
 
-- `npm run build`  
-  Type-checks and builds a production-ready bundle.
+```bash
+npm run preview
+```
 
-- `npm run preview`  
-  Serves the production build locally for verification.
+Serves the production build locally for verification.
 
-- `npm run lint`  
-  Runs ESLint checks across the project.
+```bash
+npm run lint
+```
 
-## GSAP License Note
+Runs ESLint across the project.
 
-This project uses the standard `gsap` package, including bonus plugins now available in the core package.
+## Customization
 
-- Install dependencies with `npm install`.
-- If migrating from older setups, remove `gsap-trial` from your project.
+If you want to reuse this portfolio structure for another profile, the main edit points are:
 
-Read official installation guidance here: [GSAP Installation Docs](https://gsap.com/docs/v3/Installation/)
+- `src/components/Landing.tsx` for the hero section, intro copy, and social links
+- `src/components/About.tsx` for the personal summary and highlights
+- `src/components/WhatIDo.tsx` for service areas and tags
+- `src/components/Career.tsx` for the career timeline
+- `src/components/Work.tsx` for featured projects and platform work
+- `src/components/Contact.tsx` for footer details, education, certifications, and contact links
+- `src/components/styles/` for section styling
 
-## Customization Guide
+## Notes
 
-You can adapt this portfolio to your own profile by updating the following areas:
-
-- **Content sections**: Edit files in `src/components/` such as `About.tsx`, `Career.tsx`, `WhatIDo.tsx`, and `Work.tsx`.
-- **Data source**: Update static values in files under `src/data/`.
-- **Styling**: Modify component styles in `src/components/styles/` and global styles in `src/index.css` / `src/App.css`.
-- **3D scene behavior**: Adjust scene logic in `src/components/Character/` and related utilities.
-- **Animations**: Tweak GSAP utilities under `src/components/utils/`.
-
-## Troubleshooting
-
-- **Blank screen in development**  
-  Check browser console for module import errors and verify all dependencies are installed.
-
-- **3D performance issues on low-end devices**  
-  Reduce scene complexity and post-processing effects in the character/scene utilities.
-
-- **GSAP plugin errors**  
-  Ensure you have the correct plugin package and license configuration for your target environment.
-
-- **TypeScript build failures**  
-  Run `npm run build` and address reported type errors before deploying.
+- The current portfolio content is hardcoded directly in the React components rather than loaded from a CMS or API.
+- The repository still includes a 3D scene subsystem and related assets, but the current application experience is primarily a polished 2D portfolio with animation-driven presentation.
+- There is no backend service in this project; deployment is static-host friendly.
 
 ## Deployment
 
-1. Create a production build:
+Build the site:
 
-   ```bash
-   npm run build
-   ```
+```bash
+npm run build
+```
 
-2. Validate locally:
+Preview it locally:
 
-   ```bash
-   npm run preview
-   ```
+```bash
+npm run preview
+```
 
-3. Deploy the generated `dist/` folder to your hosting provider (for example Vercel, Netlify, or Cloudflare Pages).
+Then deploy the generated `dist/` directory to a static hosting platform such as Cloudflare Pages, Vercel, or Netlify.
 
 ## License
 
-This project is open source and available under the [MIT License](LICENSE).
+This project is licensed under the [MIT License](LICENSE).
