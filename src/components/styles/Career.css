@@ -1,0 +1,101 @@
+.exp-section {
+  width: 100%;
+  padding: 140px var(--page-px);
+}
+
+.exp-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+.exp-label {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 20px;
+}
+
+.exp-heading {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4vw, 56px);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--text-1);
+  margin-bottom: 60px;
+}
+
+.exp-heading em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.exp-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.exp-card {
+  padding: 36px 32px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: border-color 0.4s, box-shadow 0.4s;
+}
+
+.exp-card:hover {
+  border-color: rgba(94, 234, 212, 0.12);
+  box-shadow: 0 4px 30px rgba(94, 234, 212, 0.04);
+}
+
+.exp-card-top {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.exp-period {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: var(--accent);
+}
+
+.exp-company {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-3);
+  letter-spacing: 0.5px;
+}
+
+.exp-role {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2vw, 28px);
+  font-weight: 600;
+  color: var(--text-1);
+}
+
+.exp-desc {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-2);
+  max-width: 700px;
+}
+
+@media (min-width: 768px) {
+  .exp-timeline {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+}
