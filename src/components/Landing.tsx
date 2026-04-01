@@ -1,8 +1,25 @@
 import "./styles/Landing.css";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa6";
 import { MdArrowOutward } from "react-icons/md";
+import { smoother } from "./Navbar";
 
 const Landing = () => {
+  const handleContactClick = (
+    event: React.MouseEvent<HTMLAnchorElement>
+  ) => {
+    event.preventDefault();
+
+    if (smoother) {
+      smoother.scrollTo("#contact", true, "top top");
+      return;
+    }
+
+    document.querySelector("#contact")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
   return (
     <section className="hero" id="landingDiv">
       <div className="hero-grid">
@@ -19,9 +36,10 @@ const Landing = () => {
           </p>
           <div className="hero-cta-row">
             <a
-              href="mailto:a.rattanpal@hotmail.com"
+              href="#contact"
               className="hero-btn"
               data-cursor="disable"
+              onClick={handleContactClick}
             >
               Get in touch <MdArrowOutward />
             </a>

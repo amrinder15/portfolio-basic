@@ -1,8 +1,73 @@
+import { useEffect, useRef, useState } from "react";
 import { MdArrowOutward, MdCopyright } from "react-icons/md";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa6";
 import "./styles/Contact.css";
 
 const Contact = () => {
+  const emailAddress = "a.rattanpal@hotmail.com";
+  const [copyStatus, setCopyStatus] = useState<"idle" | "copied" | "error">(
+    "idle"
+  );
+  const resetTimeoutRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (resetTimeoutRef.current) {
+        window.clearTimeout(resetTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  const setTemporaryStatus = (status: "copied" | "error") => {
+    setCopyStatus(status);
+
+    if (resetTimeoutRef.current) {
+      window.clearTimeout(resetTimeoutRef.current);
+    }
+
+    resetTimeoutRef.current = window.setTimeout(() => {
+      setCopyStatus("idle");
+    }, 2200);
+  };
+
+  const fallbackCopy = (value: string) => {
+    const textArea = document.createElement("textarea");
+    textArea.value = value;
+    textArea.setAttribute("readonly", "true");
+    textArea.style.position = "absolute";
+    textArea.style.left = "-9999px";
+    document.body.appendChild(textArea);
+    textArea.select();
+
+    const copied = document.execCommand("copy");
+    document.body.removeChild(textArea);
+
+    if (!copied) {
+      throw new Error("Copy command was rejected");
+    }
+  };
+
+  const handleCopyEmail = async () => {
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(emailAddress);
+      } else {
+        fallbackCopy(emailAddress);
+      }
+
+      setTemporaryStatus("copied");
+    } catch {
+      setTemporaryStatus("error");
+    }
+  };
+
+  const statusMessage =
+    copyStatus === "copied"
+      ? "Email copied"
+      : copyStatus === "error"
+        ? "Copy failed. Please copy it manually."
+        : "Click the email to copy it";
+
   return (
     <footer className="footer" id="contact">
       <div className="footer-inner">
@@ -14,13 +79,22 @@ const Contact = () => {
             <br />
             <em>extraordinary</em> together.
           </h2>
-          <a
-            href="mailto:a.rattanpal@hotmail.com"
+          <button
+            type="button"
             className="footer-email"
             data-cursor="disable"
+            onClick={handleCopyEmail}
+            aria-describedby="contact-copy-status"
           >
-            a.rattanpal@hotmail.com <MdArrowOutward />
-          </a>
+            {emailAddress} <MdArrowOutward />
+          </button>
+          <p
+            id="contact-copy-status"
+            className={`footer-copy-status footer-copy-status-${copyStatus}`}
+            aria-live="polite"
+          >
+            {statusMessage}
+          </p>
         </div>
 
         {/* Info grid */}

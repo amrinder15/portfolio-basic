@@ -41,6 +41,7 @@
 .footer-email {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   font-family: var(--font-body);
   font-size: clamp(16px, 2vw, 22px);
@@ -49,14 +50,18 @@
   padding: 16px 40px;
   border: 1px solid rgba(94, 234, 212, 0.2);
   border-radius: 100px;
+  background: transparent;
+  cursor: pointer;
   transition: background 0.3s, box-shadow 0.3s, transform 0.3s;
 }
 
-.footer-email:hover {
+.footer-email:hover,
+.footer-email:focus-visible {
   color: var(--accent);
   background: var(--accent-dim);
   box-shadow: 0 8px 30px rgba(94, 234, 212, 0.1);
   transform: translateY(-2px);
+  outline: none;
 }
 
 .footer-email svg {
@@ -64,8 +69,25 @@
   transition: transform 0.3s;
 }
 
-.footer-email:hover svg {
+.footer-email:hover svg,
+.footer-email:focus-visible svg {
   transform: translate(3px, -3px);
+}
+
+.footer-copy-status {
+  min-height: 22px;
+  margin-top: 14px;
+  font-size: 14px;
+  color: var(--text-3);
+  transition: color 0.3s ease;
+}
+
+.footer-copy-status-copied {
+  color: var(--accent);
+}
+
+.footer-copy-status-error {
+  color: #fca5a5;
 }
 
 .footer-grid {

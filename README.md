@@ -2,9 +2,9 @@
 
 Personal portfolio site for Amrinder Rattanpal, focused on platform engineering, Azure, Kubernetes, DevOps leadership, and cloud-native delivery. The app is built as a fast single-page React site with animated sections, scroll-triggered reveals, a custom cursor, and a horizontally moving tech stack showcase.
 
-[Live site](https://portfolio.ammu-rattan.workers.dev/)
+[Live site](https://portfolio-basic.ammu-rattan.workers.dev/)
 
-![Portfolio Preview](public/images/preview1.png)
+![Portfolio Preview](public/images/preview.png)
 
 ## Overview
 
